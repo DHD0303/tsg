@@ -3,6 +3,7 @@ function  sear() {
         opassword = document.getElementById('password'),
         ohistory = document.getElementById('history');
     var xmlhttp;
+    console.log(ohistory);
     if (window.XMLHttpRequest)
     {
         //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
@@ -15,12 +16,15 @@ function  sear() {
     }
     xmlhttp.onreadystatechange=function()
     {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        if (xmlhttp.status==200)
         {
             ohistory.innerHTML=xmlhttp.responseText;
+        } else {
+            console.log(xmlhttp.readyState);
+            console.log(xmlhttp.status);
         }
     }
-    xmlhttp.open("POST","tsg.php",true);
+    xmlhttp.open("POST","tsgs.php",true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send('username='+ousername.value+'&password='+opassword.value);
 

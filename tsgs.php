@@ -1,30 +1,31 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<style>
-    td {
-        width: 200px;
-        border: 1px solid black;
-        text-align: center;
-    }
-</style>
-<body>
-<form action="tsgs.php" method="post">
-    账号: <input name="username" id="username" type="text" placeholder="账号"/>
-    密码: <input name="password" id="password" type="password" placeholder="密码"/>
-    日期: <input name="date" id="date" type="text" placeholder="2017-01-01"/>
-    <input type="submit" value="查询"/>
-</form>
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="utf8">-->
+<!--    <meta name="viewport"-->
+<!--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--    <title>Document</title>-->
+<!--</head>-->
+<!--<style>-->
+<!--    td {-->
+<!--        width: 200px;-->
+<!--        border: 1px solid black;-->
+<!--        text-align: center;-->
+<!--    }-->
+<!--</style>-->
+<!--<body>-->
+<!--<form action="tsgs.php" method="post">-->
+<!--    账号: <input name="username" id="username" type="text" placeholder="账号"/>-->
+<!--    密码: <input name="password" id="password" type="password" placeholder="密码"/>-->
+<!--    日期: <input name="date" id="date" type="text" placeholder="2017-01-01"/>-->
+<!--    <input type="submit" value="查询"/>-->
+<!--</form>-->
 <?php
+header("Content-type: text/html; charset=utf-8");
 $username = $_POST['username'];
 $password = $_POST['password'];
-$date = $_POST['date'];
+//$date = $_POST['date'];
 /**
  * Created by PhpStorm.
  * User: DHD
@@ -54,28 +55,29 @@ foreach ($res[1] as $result) {
     $history[$i/5][$i%5] = $result;
     $i++;
 }
-//echo '<br><br><br>';
-//echo '<table>';
-//    echo '<tr><td></td><td>书名</td><td>图书编码</td><td>事件</td><td>日期</td></tr>';
-//foreach ($history as $result) {
-//    echo "<tr>";
-//    for($i=0; $i<5; $i++) {
-//        echo "<td>".$result[$i]."</td>";
-//    }
-//    echo "</tr>";
-//}
-//echo '</table>';
-$flag = 0;
+
+$txt = '<table>';
+    $txt = $txt.'<tr><td></td><td>书名</td><td>图书编码</td><td>事件</td><td>日期</td></tr>';
 foreach ($history as $result) {
-    if( $result[4] == $date ) {
-        echo $result[4]."<br>".$result[3]."<br>".$result[1];
-        $flag = 1;
-        break;
+    $txt = $txt. "<tr>";
+    for($i=0; $i<5; $i++) {
+        $txt = $txt."<td>".$result[$i]."</td>";
     }
+    $txt = $txt."</tr>";
 }
-if( $flag == 0 ) {
-    echo "这一天没有去图书馆";
-}
+$txt = $txt.'</table>';
+echo $txt;
+//$flag = 0;
+//foreach ($history as $result) {
+//    if( $result[4] == $date ) {
+//        echo $result[4]."<br>".$result[3]."<br>".$result[1];
+//        $flag = 1;
+//        break;
+//    }
+//}
+//if( $flag == 0 ) {
+//    echo "这一天没有去图书馆";
+//}
 ?>
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->

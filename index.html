@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf8">
+    <meta charset="gbk">
     <title>Title</title>
 </head>
 <body>
     <form action="tsgs.php" method="post">
-        è´¦å·: <input name="username" id="username" type="text" placeholder="è´¦å·"/>
-        å¯†ç : <input name="password" id="password" type="password" placeholder="å¯†ç "/>
-        æ—¥æœŸ: <input name="date" id="date" type="text" placeholder="2017-01-01"/>
-        <input type="submit" value="æŸ¥è¯¢"/>
+        ÕËºÅ: <input name="username" id="username" type="text" placeholder="ÕËºÅ"/>
+        ÃÜÂë: <input name="password" id="password" type="password" placeholder="ÃÜÂë"/>
+        <!--ÈÕÆÚ: <input name="date" id="date" type="text" placeholder="2017-01-01"/>-->
+        <input type="button" value="²éÑ¯" onclick="sear();"/>
+        <input type="submit" value="123"/>
     </form>
+    <div id="history"></div>
 </body>
+<script type="text/javascript" src="search.js"></script>
 </html>
