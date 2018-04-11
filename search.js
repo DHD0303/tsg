@@ -1,6 +1,8 @@
 function  sear() {
     var ousername = document.getElementById('username'),
         opassword = document.getElementById('password'),
+        ofromdate = document.getElementById('fromdate'),
+        otodate = document.getElementById('todate'),
         ohistory = document.getElementById('history');
     var xmlhttp;
     console.log(ohistory);
@@ -26,6 +28,6 @@ function  sear() {
     }
     xmlhttp.open("POST","tsgs.php",true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xmlhttp.send('username='+ousername.value+'&password='+opassword.value);
+    xmlhttp.send('username='+ousername.value+'&password='+opassword.value+'&fromdate='+ofromdate.value+'&todate='+otodate.value);
 
 }

@@ -22,6 +22,7 @@
 <!--    <input type="submit" value="查询"/>-->
 <!--</form>-->
 <?php
+
 header("Content-type: text/html; charset=utf-8");
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -42,7 +43,13 @@ $data = array('login_type'=>'',
 $snoopy->submit($url,$data);
 $res = $snoopy->results;
 $snoopy->setcookies();
-$snoopy->fetch($history_url);
+$datas = array (
+    'library_id' => 'A%3A%C3%8F%C3%A6%C3%8C%C2%B6%C2%B4%C3%B3%C3%91%C2%A7%C3%8D%C2%BC%C3%8A%C3%A9%C2%B9%C3%9D',
+    'fromdate' => $_POST['fromdate'],
+    'todate' => $_POST['todate'],
+    'b1' => '%BC%EC%CB%F7'
+);
+$snoopy->submit($history_url, $datas);
 $history = $snoopy->results;
 $history = iconv("gbk", "utf-8", $history);
 $history = preg_replace("/\s|&nbsp|;/","", $history);
@@ -55,7 +62,6 @@ foreach ($res[1] as $result) {
     $history[$i/5][$i%5] = $result;
     $i++;
 }
-
 $txt = '<table>';
     $txt = $txt.'<tr><td></td><td>书名</td><td>图书编码</td><td>事件</td><td>日期</td></tr>';
 foreach ($history as $result) {
